@@ -12,7 +12,7 @@ Each project focuses on a specific concept — sensors, actuators, and basic pro
 | Servo Button Control | Control a servo motor using two push buttons | [servo_button](./projects/servo_button) |
 | Light Sensor LED | Turn an LED on/off based on light intensity | [light_sensor_led](./projects/light_sensor_led) |
 | Ultrasonic Alarm | Trigger a buzzer when an object is too close | [ultrasonic_alarm](./projects/ultrasonic_alarm) |
-| DHT11 Display | Display temperature and humidity on an OLED | [dht11_display](./projects/dht11_display) |
+| OLED Display | Display values of sensors on an OLED | [dht11_display](./projects/dht11_display) |
 
 ---
 
@@ -37,7 +37,7 @@ Each project focuses on a specific concept — sensors, actuators, and basic pro
 
 - Arduino Uno (or compatible board)  
 - Breadboard and jumper wires  
-- LEDs, resistors, buttons  
+- LEDs, resistors, buttons, buzzers  
 - Common sensors: LDR, DHT11, ultrasonic sensor, etc.
 
 ---
