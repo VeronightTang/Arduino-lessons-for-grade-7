@@ -1,7 +1,7 @@
-# Servo Button Control
+# Blink the onboard LED
 
-Control a servo motor using two push buttons.  
-Each button rotates the servo by 10° in either direction.
+Blink the LED on Arduino board. 
+No external circuit required.
 
 ---
 
