@@ -1,4 +1,4 @@
-# Servo Button Control
+# Sensors
 
 Control a servo motor using two push buttons.  
 Each button rotates the servo by 10° in either direction.
