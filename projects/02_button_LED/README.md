@@ -1,16 +1,16 @@
-# Servo Button Control
+# LED Button Control
 
-Control a servo motor using two push buttons.  
-Each button rotates the servo by 10° in either direction.
+Turn an LED on or off using a push button.  
+When the button is pressed, the LED lights up; when released, it turns off.
 
 ---
 
 ## Project Overview
 
 This project teaches:
-- Reading button inputs  
-- Controlling servo angles using the Servo library  
-- Debouncing and basic logic control  
+- Reading button input using `digitalRead()`  
+- Controlling digital output pins with `digitalWrite()`  
+- Basic understanding of logic control  
 
 ---
 
@@ -19,10 +19,12 @@ This project teaches:
 | Component | Quantity |
 |------------|-----------|
 | Arduino Uno | 1 |
-| SG90 Servo Motor | 1 |
-| Push Button | 2 |
-| 10kΩ Resistor | 2 |
+| LED | 1 |
+| Push Button | 1 |
+| 220Ω Resistor (for LED) | 1 |
+| 10kΩ Resistor (for Button, optional if using INPUT_PULLUP) | 1 |
 | Jumper Wires | Several |
+| Breadboard | 1 |
 
 ---
 
@@ -30,40 +32,32 @@ This project teaches:
 
 | Component | Arduino Pin |
 |------------|--------------|
-| Left Button | D2 |
-| Right Button | D3 |
-| Servo Signal | D9 |
-| Servo Power | 5V / GND |
+| LED (+) | D8 |
+| LED (–) | GND (via 220Ω resistor) |
+| Button | D7 |
+| Button other side | 5V |
+| (Optional) Pull-down Resistor | 10kΩ between D7 and GND |
 
-📸 (Optional) Add your circuit diagram or wiring photo here.
+📸 *(Optional)* Add your circuit diagram or wiring photo here.
 
 ---
 
 ## Code Example
 
 ```cpp
-#include <Servo.h>
-Servo servo;
-int pos = 90;
-const int leftButton = 2;
-const int rightButton = 3;
+int ledPin = 8;
+int buttonPin = 7;
 
 void setup() {
-  servo.attach(9);
-  pinMode(leftButton, INPUT_PULLUP);
-  pinMode(rightButton, INPUT_PULLUP);
-  servo.write(pos);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
 }
 
 void loop() {
-  if (digitalRead(leftButton) == LOW && pos > 0) {
-    pos -= 10;
-    servo.write(pos);
-    delay(200);
-  }
-  if (digitalRead(rightButton) == LOW && pos < 180) {
-    pos += 10;
-    servo.write(pos);
-    delay(200);
-  }
+  int buttonState = digitalRead(buttonPin);
+  if (buttonState == HIGH) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }                  
 }
