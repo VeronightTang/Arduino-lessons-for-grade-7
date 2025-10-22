@@ -1,69 +1,80 @@
-# Servo Button Control
+# Alarm System
 
-Control a servo motor using two push buttons.  
-Each button rotates the servo by 10° in either direction.
+Toggle an LED and buzzer alarm using a single button.  
+Each button press switches the alarm ON or OFF.
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 This project teaches:
-- Reading button inputs  
-- Controlling servo angles using the Servo library  
-- Debouncing and basic logic control  
+- Using a button to toggle system states  
+- Controlling LEDs and buzzers with digital pins  
+- Simple logic and state change detection  
 
 ---
 
-## 🧰 Components Required
+## Components Required
 
 | Component | Quantity |
 |------------|-----------|
 | Arduino Uno | 1 |
-| SG90 Servo Motor | 1 |
-| Push Button | 2 |
-| 10kΩ Resistor | 2 |
+| Push Button | 1 |
+| LED | 1 |
+| Buzzer | 1 |
+| 220Ω Resistor (for LED) | 1 |
+| 10kΩ Resistor (for Button, optional if using INPUT_PULLUP) | 1 |
 | Jumper Wires | Several |
+| Breadboard | 1 |
 
 ---
 
-## ⚡ Circuit Connection
+## Circuit Connection
 
 | Component | Arduino Pin |
 |------------|--------------|
-| Left Button | D2 |
-| Right Button | D3 |
-| Servo Signal | D9 |
-| Servo Power | 5V / GND |
+| Button | D7 |
+| LED | D8 |
+| Buzzer | D9 |
+| LED (–) | GND (via 220Ω resistor) |
+| Buzzer (–) | GND |
 
-📸 (Optional) Add your circuit diagram or wiring photo here.
+📸 *(Optional)* Add your circuit diagram or wiring photo here.
 
 ---
 
-## 💻 Code Example
+## Code Example
 
 ```cpp
-#include <Servo.h>
-Servo servo;
-int pos = 90;
-const int leftButton = 2;
-const int rightButton = 3;
+int buttonPin = 7;   
+int ledPin = 8;      
+int buzzerPin = 9;    
+
+bool alarmOn = false;        
+int lastButtonState = LOW;   
 
 void setup() {
-  servo.attach(9);
-  pinMode(leftButton, INPUT_PULLUP);
-  pinMode(rightButton, INPUT_PULLUP);
-  servo.write(pos);
+  pinMode(buttonPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
 }
 
 void loop() {
-  if (digitalRead(leftButton) == LOW && pos > 0) {
-    pos -= 10;
-    servo.write(pos);
-    delay(200);
+  int buttonState = digitalRead(buttonPin);
+
+  // Detect button press and toggle alarm state
+  if (buttonState == HIGH && lastButtonState == LOW) {
+    alarmOn = !alarmOn;  
+    delay(50);  // Debounce delay
   }
-  if (digitalRead(rightButton) == LOW && pos < 180) {
-    pos += 10;
-    servo.write(pos);
-    delay(200);
+
+  lastButtonState = buttonState; 
+
+  if (alarmOn) {
+    digitalWrite(ledPin, HIGH);
+    tone(buzzerPin, 1000);  // Buzzer on
+  } else {
+    digitalWrite(ledPin, LOW);
+    noTone(buzzerPin);      // Buzzer off
   }
 }
