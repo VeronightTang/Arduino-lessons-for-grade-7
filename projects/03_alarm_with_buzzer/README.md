@@ -79,6 +79,8 @@ void loop() {
   }
 }
 
+---
+
 # Music Player
 
 Play a simple melody using a buzzer connected to Arduino.  
