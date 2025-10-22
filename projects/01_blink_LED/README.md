@@ -8,9 +8,9 @@ No external circuit required.
 ## Project Overview
 
 This project teaches:
-- Reading button inputs  
-- Controlling servo angles using the Servo library  
-- Debouncing and basic logic control  
+- The recognition and application of the built-in LED on the development board  
+- How to write simple control code to realize the on-off switching of LED lights  
+- The use of delay functions to control the time interval of electronic component actions
 
 ---
 
@@ -19,19 +19,6 @@ This project teaches:
 | Component | Quantity |
 |------------|-----------|
 | Arduino Uno | 1 |
-
----
-
-## ⚡ Circuit Connection
-
-| Component | Arduino Pin |
-|------------|--------------|
-| Left Button | D2 |
-| Right Button | D3 |
-| Servo Signal | D9 |
-| Servo Power | 5V / GND |
-
-(Optional) Add your circuit diagram or wiring photo here.
 
 ---
 
