@@ -8,8 +8,6 @@ This repository contains two beginner-friendly Arduino projects demonstrating th
 1. [Project 1: Alarm](#project-1-alarm)  
 2. [Project 2: Melody Player](#project-2-melody-player)  
 3. [Code Example](#code-example)  
-4. [License](#license)  
-5. [Author](#author)
 
 ---
 
@@ -31,7 +29,7 @@ It’s a great introduction to basic input/output control in Arduino.
 | Buzzer | 1 | Active or passive buzzer |
 | Push Button | 1 | Normally open button |
 | Resistor | 1 | 10kΩ pull-down resistor |
-| Jumper Wires | — | For connections |
+| Jumper Wires | Several | For connections |
 | Breadboard | 1 | For circuit prototyping |
 
 ### Circuit Connection
@@ -60,7 +58,7 @@ The example below plays a simple tune repeatedly.
 |-----------|----------|-------------|
 | Arduino Board | 1 | Any Arduino-compatible board |
 | Buzzer | 1 | Active or passive buzzer |
-| Jumper Wires | — | For connections |
+| Jumper Wires | Several | For connections |
 | Breadboard | 1 | Optional for easy setup |
 
 ### Circuit Connection
