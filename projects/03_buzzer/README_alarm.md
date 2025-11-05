@@ -1,82 +1,94 @@
-# Alarm System
+# Arduino Alarm & Melody Projects
 
-Toggle an LED and buzzer alarm using a single button.  
-Each button press switches the alarm ON or OFF.
-
----
-
-## Project Overview
-
-This project teaches:
-- Using a button to toggle system states  
-- Controlling LEDs and buzzers with digital pins  
-- Simple logic and state change detection  
+This repository contains two beginner-friendly Arduino projects demonstrating the use of **buzzers** and **buttons** to create simple sound-based systems.
 
 ---
 
-## Components Required
-
-| Component | Quantity |
-|------------|-----------|
-| Arduino Uno | 1 |
-| Push Button | 1 |
-| LED | 1 |
-| Buzzer | 1 |
-| 220Ω Resistor (for LED) | 1 |
-| 10kΩ Resistor (for Button, optional if using INPUT_PULLUP) | 1 |
-| Jumper Wires | Several |
-| Breadboard | 1 |
+## Table of Contents
+1. [Project 1: Alarm](#project-1-alarm)  
+2. [Project 2: Melody Player](#project-2-melody-player)  
+3. [Code Example](#code-example)  
+4. [License](#license)  
+5. [Author](#author)
 
 ---
 
-## Circuit Connection
+## Project 1: Alarm
 
-| Component | Arduino Pin |
-|------------|--------------|
-| Button | D7 |
-| LED | D8 |
-| Buzzer | D9 |
-| LED (–) | GND (via 220Ω resistor) |
-| Buzzer (–) | GND |
+### Project Overview
+This project demonstrates a simple **alarm system** using a **button** and a **buzzer**.  
+When the button is pressed, the buzzer produces a sound; when released, it stops.  
+It’s a great introduction to basic input/output control in Arduino.
 
-📸 *(Optional)* Add your circuit diagram or wiring photo here.
+### Function
+- **Press the button →** buzzer turns ON (sound alarm).  
+- **Release the button →** buzzer turns OFF.
+
+### Components Required
+| Component | Quantity | Description |
+|-----------|----------|-------------|
+| Arduino Board | 1 | Any Arduino-compatible microcontroller (e.g., UNO, Nano) |
+| Buzzer | 1 | Active or passive buzzer |
+| Push Button | 1 | Normally open button |
+| Resistor | 1 | 10kΩ pull-down resistor |
+| Jumper Wires | — | For connections |
+| Breadboard | 1 | For circuit prototyping |
+
+### Circuit Connection
+| Arduino Pin | Component | Description |
+|-------------|-----------|-------------|
+| Pin 9 | Buzzer | Buzzer signal pin |
+| Pin 7 | Button | Reads button state |
+| GND | Buzzer & Button | Common ground connection |
+
+**Wiring Notes:**
+- One side of the button connects to **5V**.  
+- The other side connects to **pin 7** and to **GND** through a **10kΩ resistor**.  
+- The buzzer’s positive leg connects to **pin 9**, and the negative leg connects to **GND**.
+
+---
+
+## Project 2: Melody Player
+
+### Project Overview
+This project demonstrates how to make the Arduino play a **melody** using a buzzer.  
+It introduces the concept of **tone frequencies**, **note duration**, and **timing** control.  
+The example below plays a simple tune repeatedly.
+
+### Components Required
+| Component | Quantity | Description |
+|-----------|----------|-------------|
+| Arduino Board | 1 | Any Arduino-compatible board |
+| Buzzer | 1 | Active or passive buzzer |
+| Jumper Wires | — | For connections |
+| Breadboard | 1 | Optional for easy setup |
+
+### Circuit Connection
+| Arduino Pin | Component | Description |
+|-------------|-----------|-------------|
+| Pin 8 | Buzzer | Buzzer signal pin |
+| GND | Buzzer | Common ground |
+
+**Wiring Notes:**
+- Connect buzzer positive to **pin 8**, negative to **GND**.
 
 ---
 
 ## Code Example
 
 ```cpp
-int buttonPin = 7;   
-int ledPin = 8;      
-int buzzerPin = 9;    
-
-bool alarmOn = false;        
-int lastButtonState = LOW;   
+int buzzerPin = 9;
+int buttonPin = 7;
 
 void setup() {
   pinMode(buttonPin, INPUT);
-  pinMode(ledPin, OUTPUT);
-  pinMode(buzzerPin, OUTPUT);
 }
 
 void loop() {
   int buttonState = digitalRead(buttonPin);
-
-  // Detect button press and toggle alarm state
-  if (buttonState == HIGH && lastButtonState == LOW) {
-    alarmOn = !alarmOn;  
-    delay(50);  // Debounce delay
-  }
-
-  lastButtonState = buttonState; 
-
-  if (alarmOn) {
-    digitalWrite(ledPin, HIGH);
-    tone(buzzerPin, 1000);  // Buzzer on
+  if (buttonState == HIGH) {
+    tone(buzzerPin, 1000, 200);  
   } else {
-    digitalWrite(ledPin, LOW);
-    noTone(buzzerPin);      // Buzzer off
+    noTone(buzzerPin);  
   }
 }
-
-
