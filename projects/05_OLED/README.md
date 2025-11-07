@@ -15,27 +15,32 @@ They demonstrate how to display text, sensor readings, and environmental data su
 
 ## Required Libraries
 
-All projects use the **Adafruit OLED** and related libraries, which can be installed via the Arduino Library Manager.
+Before running these OLED projects, make sure the following libraries are installed in your Arduino IDE.
 
-1. **Adafruit SSD1306**  
-   - Handles communication with the OLED hardware.  
-   - Install via:  
-     `Sketch → Include Library → Manage Libraries → Search "Adafruit SSD1306" → Install`
+You can install them via:
+> **Arduino IDE → Tools → Manage Libraries…**  
+> (or **Sketch → Include Library → Manage Libraries…**)  
+> Then search for each library name and install the version by the specified author.
 
-2. **Adafruit GFX**  
-   - Provides basic graphics primitives such as text, lines, and shapes.  
-   - Required for text rendering functions like `setCursor()` and `println()`.  
-   - Install via:  
-     `Sketch → Include Library → Manage Libraries → Search "Adafruit GFX Library" → Install`
+| Library Name | Author (Publisher) | Description | Installation Tip |
+|---------------|--------------------|--------------|------------------|
+| **Adafruit SSD1306** | *Adafruit* | Core driver library for the SSD1306 OLED display module (handles screen communication and buffer). | Search **“Adafruit SSD1306”** → install the one by **Adafruit**. |
+| **Adafruit GFX Library** | *Adafruit* | Provides graphics functions (text, lines, shapes) required by SSD1306. | Search **“Adafruit GFX Library”** → install the one by **Adafruit**. |
+| **Wire** *(built-in)* | *Arduino* | Handles I²C communication between Arduino and OLED. | Already included with the Arduino IDE — no manual installation needed. |
+| **DHT sensor library** | *Adafruit* | Enables reading temperature and humidity data from DHT11/DHT22 sensors. | Search **“DHT sensor library”** → install the one by **Adafruit**. |
+| **Adafruit Unified Sensor** | *Adafruit* | Common dependency for many Adafruit sensor libraries (required by DHT). | Search **“Adafruit Unified Sensor”** → install the one by **Adafruit**. |
 
-3. **Wire** *(built-in)*  
-   - Used for I2C communication between Arduino and OLED display.  
-   - Already included with the Arduino IDE.
+**Quick Summary**
+- All libraries are published by **Adafruit** (except Wire, which is built-in).  
+- You can confirm correct libraries by checking the **author name** in the Library Manager.  
+- Installing **Adafruit SSD1306** will automatically prompt to install **Adafruit GFX** if missing.  
+- For temperature and humidity projects, make sure both **DHT sensor library** and **Adafruit Unified Sensor** are installed.
 
-4. **DHT Sensor Library** *(for Project 3)*  
-   - Enables reading temperature and humidity from DHT11 or DHT22 sensors.  
-   - Install via:  
-     `Sketch → Include Library → Manage Libraries → Search "DHT sensor library" → Install`
+---
+
+*Tip:* After installing, you can verify installation by navigating to:
+> **File → Examples → Adafruit SSD1306 → ssd1306_128x64_i2c**  
+If you can compile and upload that example successfully, your OLED setup is ready.
 
 ---
 
