@@ -11,9 +11,6 @@ They demonstrate how to display text, sensor readings, and environmental data su
 3. [Project 1: Hello OLED](#project-1-hello-oled)  
 4. [Project 2: Water Sensor Display](#project-2-water-sensor-display)  
 5. [Project 3: Temperature & Humidity Display](#project-3-temperature--humidity-display)  
-6. [License](#license)  
-7. [Author](#author)
-
 ---
 
 ## Required Libraries
